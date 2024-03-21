@@ -1,0 +1,7 @@
+{
+  "flink.servers": "localhost:8081",
+  "kafka.brokers": "localhost:49523",
+  "kafka.topic.price.name": "local.price",
+  "kafka.topic.holding.name": "local.holding",
+  "kafka.topic.order.name": "local.order"
+}
