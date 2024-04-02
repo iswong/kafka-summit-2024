@@ -126,6 +126,7 @@ public class MultiplyQtyAndPrice
     final double price = prices.getPrices().getOrDefault(holding.getSymbol(), 0d);
 
     return Exposure.builder()
+        .symbol(holding.getSymbol())
         .sodEmv(sodQty * price)
         .sodTmv(sodQty * price)
         .expectedEmv(expectedQty * price)

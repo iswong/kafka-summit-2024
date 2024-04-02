@@ -62,6 +62,7 @@ public class KafkaStreamJob {
     // Sets up the execution environment, which is the main entry point
     // to building Flink applications.
     final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment()
+        .enableCheckpointing(10000L)
         .setParallelism(1);
 
     final String groupId = String.valueOf(System.currentTimeMillis());
@@ -112,6 +113,7 @@ public class KafkaStreamJob {
                     .converter(KafkaStreamJob::toCsv)
                     .build())
         .withBucketAssigner(new CustomBucketAssigner())
+        .withRollingPolicy(new OnEventCheckpointRollingPolicy())
         .build();
 
     exposureStream.sinkTo(sink);
